@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+}
+.container {
+    padding: 50px;
+  background-color: lightblue;
+}
+
+input[type=text], textarea {
+  width: 50%;
+  padding: 9px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=text]:focus {
+  background-color: #FFF59D;
+  outline: none;
+}
+ div {
+            padding: 10px 0;
+         }
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+.predictbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 25%;
+  opacity: 0.9;
+}
+.registerbtn:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+<form action="{{ url_for('predict')}}" method="post">
+  <div class="container">
+  <center>  <h1>Bank Term Deposit Campaign Prediction</h1> </center>
+  <hr>
+
+<label> <b>Age: </b></label>
+<input type="text" name="age" placeholder= "Enter the customer age" size="15" required />
+<br>
+<label> <b>Job Type: </b></label>
+<select name="job">
+<option value="menu">Select</option>
+<option value="blue-collar">Blue-Collar</option>
+<option value="management">Management</option>
+<option value="technician">Technician</option>
+<option value="admin">Admin</option>
+<option value="services">Services</option>
+<option value="retired">Retired</option>
+<option value="self-employed">Self-employed</option>
+<option value="entrepreneur">Entrepreneur</option>
+<option value="unemployed">Unemployed</option>
+<option value="housemaid">Housemaid</option>
+<option value="student">Student</option>
+<option value="unknown">Unknown</option>
+</select>
+<br><br>
+<label><b> Marital Status:</b> </label>
+<select name="marital">
+<option value="menu">Select</option>
+<option value="married">married</option>
+<option value="single">single</option>
+<option value="divorced">divorced</option>
+</select>
+<br><br>
+<label>
+<b>Education:</b>
+</label>
+<select name="education">
+<option value="menu">Select</option>
+<option value="secondary">secondary</option>
+<option value="tertiary">tertiary</option>
+<option value="primary">primary</option>
+ <option value="unknown">unknown</option>
+</select>
+<br><br>
+<label>
+<b>Has Credit in Default?:</b>
+</label>
+<input type="radio" value="yes" name="default" checked> yes
+<input type="radio" value="no" name="default"> no
+<br><br>
+<label><b>Balance:</b></label>
+ <input type="text" placeholder="Enter the balance amount" name="balance" required>
+ <br>
+ <label>
+ <b>Has Housing Loan?:</b>
+ </label>
+ <input type="radio" value="yes" name="housing" checked> yes
+ <input type="radio" value="no" name="housing"> no
+ <br><br>
+ <label>
+ <b>Has Personal Loan?:</b>
+ </label>
+ <input type="radio" value="yes" name="loan" checked> yes
+ <input type="radio" value="no" name="loan"> no
+ <br><br>
+ <label>
+ <b>Contact Communication Type:</b>
+ </label>
+ <select name="contact">
+ <option value="menu">Select</option>
+ <option value="cellular">cellular</option>
+ <option value="unknown">unknown</option>
+ <option value="telephone">telephone</option>
+ </select>
+ <br><br>
+ <label><b>Days of last contact:</b></label>
+  <input type="text" placeholder="Enter the days since last contact" name="day" required>
+<br>
+<label> <b>Month of Last contact:</b></label>
+<select name="month">
+<option value="menu">Select</option>
+<option value="jan">jan</option>
+<option value="feb">feb</option>
+<option value="mar">mar</option>
+<option value="apr">apr</option>
+<option value="may">may</option>
+<option value="jun">jun</option>
+<option value="jul">jul</option>
+<option value="aug">aug</option>
+<option value="sep">sep</option>
+<option value="oct">oct</option>
+<option value="nov">nov</option>
+<option value="dec">dec</option>
+</select>
+<br><br>
+<label><b>Last Contact Duration:</b></label>
+ <input type="text" placeholder="Enter the last contact duration in seconds" name="duration" required>
+ <br>
+ <label><b>Campaign time per customer:</b></label>
+  <input type="text" placeholder="Number of times a customer was contacted during the campaign" name="campaign" required>
+  <br>
+  <label><b>Past days:</b></label>
+   <input type="text" placeholder="Number of days passed after the customer was last contacted from a previous campaign " name="pdays" required>
+   <br>
+
+    <br>
+    <label>
+    <b>Outcome of the previous marketing campaign:</b>
+    </label>
+    <select name="poutcome">
+    <option value="menu">Select</option>
+    <option value="unknown">unknown</option>
+    <option value="failure">failure</option>
+    <option value="other">other</option>
+    <option value="success">success</option>
+    </select>
+<br><br>
+    <button id="sub" type="submit" class="predictbtn">Predict</button>
+    <br><br><h3>{{ prediction_text }}</h3>
+</div>
+</form>
+
+</body>
+</html>
